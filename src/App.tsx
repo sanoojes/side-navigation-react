@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation";
 import Backdrop from "./components/Backdrop";
 import Dashboard from "./components/Dashboard";
 import GithubButton from "./components/GithubButton";
+import { motion } from "framer-motion";
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -26,7 +27,17 @@ function App() {
     <>
       <GithubButton />
       <Backdrop onClick={clickOut} controller={backdropController} />
-      <main className="h-screen w-full flex flex-row relative">
+      <motion.main
+        className="h-screen w-full flex flex-row relative"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "linear" }}
+        variants={{
+          visible: { opacity: 1 },
+          hidden: { opacity: 0 },
+        }}
+      >
         <Navigation
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -34,7 +45,7 @@ function App() {
           setSelectedProject={setSelectedProject}
         />
         <Dashboard />
-      </main>
+      </motion.main>
     </>
   );
 }
