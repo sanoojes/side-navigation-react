@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
-import { motion } from "framer-motion";
 import Backdrop from "./components/Backdrop";
 import Dashboard from "./components/Dashboard";
+import GithubButton from "./components/GithubButton";
 
 function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -24,6 +24,7 @@ function App() {
 
   return (
     <>
+      <GithubButton />
       <Backdrop onClick={clickOut} controller={backdropController} />
       <main className="h-screen w-full flex flex-row relative">
         <Navigation
